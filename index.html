@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Decent Detroit | Craft Coffee & Pastries | Go Tigers!</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
         :root {
             --brand-teal: #4A6B69; 
@@ -151,11 +153,14 @@
             background-color: var(--brand-dark);
         }
 
-        /* Hero Section */
+        /* NEW: Parallax Hero Section */
         .hero {
             height: 70vh;
             background: linear-gradient(rgba(44, 62, 61, 0.7), rgba(44, 62, 61, 0.7)), 
-                        url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=80') center/cover;
+                        url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* This creates the Parallax effect */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -464,15 +469,60 @@
             font-size: 0.9rem;
         }
 
+        /* NEW: Floating Mobile Action Bar */
+        .mobile-action-bar {
+            display: none;
+        }
+
         @media (max-width: 900px) {
             .insta-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
+        /* Mobile specific styling */
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero h2 { font-size: 2.5rem; }
             .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
             .insta-header { flex-direction: column; gap: 1rem; text-align: center; }
+            
+            /* Give body padding so content isn't hidden behind the floating bar */
+            body {
+                padding-bottom: 70px; 
+            }
+
+            /* Reveal the floating bar */
+            .mobile-action-bar {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+
+            .mobile-action-bar a {
+                flex: 1;
+                text-align: center;
+                padding: 1.2rem 1rem;
+                font-size: 1.1rem;
+                font-weight: 700;
+                text-decoration: none;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .mobile-btn-order {
+                background-color: var(--brand-teal);
+                color: var(--white);
+            }
+
+            .mobile-btn-dir {
+                background-color: var(--white);
+                color: var(--brand-teal);
+                border-top: 2px solid var(--light-bg);
+            }
         }
     </style>
 </head>
@@ -487,6 +537,11 @@
         </div>
     </div>
 
+    <div class="mobile-action-bar">
+        <a href="#visit" class="mobile-btn-dir">📍 Directions</a>
+        <a href="#drinks" class="mobile-btn-order">Order Ahead</a>
+    </div>
+
     <nav>
         <h1>Decent Detroit</h1>
         <div class="nav-links">
@@ -498,13 +553,13 @@
     </nav>
 
     <header class="hero">
-        <h2>A Decent Coffee.</h2>
-        <p>Your neighborhood spot on the edge of Jefferson and Grosse Pointe Park. Expertly pulled espresso, fresh pastries, and a calm vibe to get work done.</p>
-        <a href="#drinks" class="nav-cta" style="padding: 1rem 2rem; font-size: 1.1rem;">View Our Menu</a>
+        <h2 data-aos="fade-up">A Decent Coffee.</h2>
+        <p data-aos="fade-up" data-aos-delay="100">Your neighborhood spot on the edge of Jefferson and Grosse Pointe Park. Expertly pulled espresso, fresh pastries, and a calm vibe to get work done.</p>
+        <a href="#drinks" class="nav-cta" data-aos="fade-up" data-aos-delay="200" style="padding: 1rem 2rem; font-size: 1.1rem;">View Our Menu</a>
     </header>
 
     <section id="drinks" class="menu-section">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
             <div>
                 <h3>Coffee & Specialty</h3>
                 <p style="color: var(--text-light);">Expertly pulled and poured perfectly.</p>
@@ -513,28 +568,28 @@
         </div>
         
         <div class="menu-carousel">
-            <div class="menu-card">
+            <div class="menu-card" data-aos="fade-left" data-aos-delay="100">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnjQoygmTifgO4JM5RTbda-IzyfKbSwWUnY8NVvgXsDg&s=10" alt="Pour Over" class="menu-img">
                 <div class="menu-content">
                     <h4>Pour Over <span class="price">$4.00</span></h4>
                     <p>Precision-brewed rotating local roasts for a clean, nuanced cup.</p>
                 </div>
             </div>
-            <div class="menu-card">
+            <div class="menu-card" data-aos="fade-left" data-aos-delay="200">
                 <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=400&q=80" alt="Espresso" class="menu-img">
                 <div class="menu-content">
                     <h4>Espresso <span class="price">$2.50</span></h4>
                     <p>A pure, perfectly pulled shot of our signature blend.</p>
                 </div>
             </div>
-            <div class="menu-card">
+            <div class="menu-card" data-aos="fade-left" data-aos-delay="300">
                 <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=400&q=80" alt="Latte" class="menu-img">
                 <div class="menu-content">
                     <h4>Latte <span class="price">$5.00</span></h4>
-                    <p>Rich espresso pulled short, with perfectly micro-foamed milk. Available iced or hot.</p>
+                    <p>Rich espresso pulled short, with perfectly micro-foamed milk.</p>
                 </div>
             </div>
-            <div class="menu-card">
+            <div class="menu-card" data-aos="fade-left" data-aos-delay="400">
                 <img src="https://images.unsplash.com/photo-1579992357154-faf4bde95b3d?auto=format&fit=crop&w=400&q=80" alt="Flat White" class="menu-img">
                 <div class="menu-content">
                     <h4>Flat White <span class="price">$5.00</span></h4>
@@ -573,7 +628,7 @@
     </section>
 
     <section id="food" class="menu-section" style="padding-top: 0;">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
             <div>
                 <h3>Food & Pastries</h3>
                 <p style="color: var(--text-light);">Baked locally, served fresh daily.</p>
@@ -582,28 +637,28 @@
         </div>
         
         <div class="menu-carousel">
-            <div class="menu-card">
+            <div class="menu-card" data-aos="fade-left" data-aos-delay="100">
                 <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerIcljraXwx-S65j7Gq-T3eVJUySMlxJe-iZk1aRJKYPocarZbK6z6scmeDiwHkqghodKdmQGiwt2A5KwRTcJ7KP7gfmBkYT45I6dxk_NUa0WPdXvoYhINes5PikogkU-RL_KLJ3aQ7CfkD=s1198-w676-h1198-rw" alt="Chocolate Croissant" class="menu-img">
                 <div class="menu-content">
                     <h4>Chocolate Croissant <span class="price">$5.00</span></h4>
                     <p>Flaky, buttery pastry dough wrapped around rich dark chocolate.</p>
                 </div>
             </div>
-            <div class="menu-card">
+            <div class="menu-card" data-aos="fade-left" data-aos-delay="200">
                 <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerIcljraXwx-S65j7Gq-T3eVJUySMlxJe-iZk1aRJKYPocarZbK6z6scmeDiwHkqghodKdmQGiwt2A5KwRTcJ7KP7gfmBkYT45I6dxk_NUa0WPdXvoYhINes5PikogkU-RL_KLJ3aQ7CfkD=s1198-w676-h1198-rw" alt="Almond Croissant" class="menu-img">
                 <div class="menu-content">
                     <h4>Almond Croissant <span class="price">$5.50</span></h4>
                     <p>Classic croissant baked twice with a sweet almond frangipane filling.</p>
                 </div>
             </div>
-            <div class="menu-card">
+            <div class="menu-card" data-aos="fade-left" data-aos-delay="300">
                 <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=400&q=80" alt="Pistachio Choco Croissant" class="menu-img">
                 <div class="menu-content">
                     <h4>Pistachio Choco Croissant <span class="price">$6.40</span></h4>
                     <p>The ultimate indulgence. Flaky layers loaded with pistachio and rich chocolate.</p>
                 </div>
             </div>
-            <div class="menu-card">
+            <div class="menu-card" data-aos="fade-left" data-aos-delay="400">
                 <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" alt="Cinnamon Bun" class="menu-img">
                 <div class="menu-content">
                     <h4>Cinnamon Bun <span class="price">$6.00</span></h4>
@@ -642,7 +697,7 @@
     </section>
 
     <section id="instagram" class="instagram-section">
-        <div class="insta-header">
+        <div class="insta-header" data-aos="fade-up">
             <div class="insta-handle">
                 <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=100&q=80" alt="Decent Detroit Profile">
                 <div>
@@ -654,28 +709,28 @@
         </div>
         
         <div class="insta-grid">
-            <div class="insta-item">
+            <div class="insta-item" data-aos="zoom-in" data-aos-delay="0">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnjQoygmTifgO4JM5RTbda-IzyfKbSwWUnY8NVvgXsDg&s=10" alt="IG Post 1">
                 <div class="insta-overlay">
                     <span>❤️ 143</span>
                     <span>💬 12</span>
                 </div>
             </div>
-            <div class="insta-item">
+            <div class="insta-item" data-aos="zoom-in" data-aos-delay="100">
                 <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=500&q=80" alt="IG Post 2">
                 <div class="insta-overlay">
                     <span>❤️ 89</span>
                     <span>💬 4</span>
                 </div>
             </div>
-            <div class="insta-item">
+            <div class="insta-item" data-aos="zoom-in" data-aos-delay="200">
                 <img src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?auto=format&fit=crop&w=500&q=80" alt="IG Post 3">
                 <div class="insta-overlay">
                     <span>❤️ 210</span>
                     <span>💬 28</span>
                 </div>
             </div>
-            <div class="insta-item">
+            <div class="insta-item" data-aos="zoom-in" data-aos-delay="300">
                 <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80" alt="IG Post 4">
                 <div class="insta-overlay">
                     <span>❤️ 175</span>
@@ -686,7 +741,7 @@
     </section>
 
     <footer id="visit">
-        <div class="footer-content">
+        <div class="footer-content" data-aos="fade-up">
             <div class="footer-col">
                 <h4>Find Us</h4>
                 <p>14834 Kercheval Ave<br>Detroit, Michigan 48215</p>
@@ -723,13 +778,21 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Initialize Animations
+        AOS.init({
+            duration: 800, // Animation speed
+            once: true, // Whether animation should happen only once - while scrolling down
+            offset: 50 // Offset (in px) from the original trigger point
+        });
+
+        // Modal Logic
         function closeModal() {
             const modal = document.getElementById('tigersModal');
             modal.classList.add('hidden');
         }
 
-        // Allow closing the modal by clicking anywhere on the dark overlay background
         document.getElementById('tigersModal').addEventListener('click', function(event) {
             if (event.target === this) {
                 closeModal();
