@@ -153,14 +153,14 @@
             background-color: var(--brand-dark);
         }
 
-        /* NEW: Parallax Hero Section */
+        /* Parallax Hero Section */
         .hero {
             height: 70vh;
             background: linear-gradient(rgba(44, 62, 61, 0.7), rgba(44, 62, 61, 0.7)), 
                         url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* This creates the Parallax effect */
+            background-attachment: fixed;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -469,7 +469,7 @@
             font-size: 0.9rem;
         }
 
-        /* NEW: Floating Mobile Action Bar */
+        /* Floating Mobile Action Bar */
         .mobile-action-bar {
             display: none;
         }
@@ -485,12 +485,10 @@
             .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
             .insta-header { flex-direction: column; gap: 1rem; text-align: center; }
             
-            /* Give body padding so content isn't hidden behind the floating bar */
             body {
-                padding-bottom: 70px; 
+                padding-bottom: 60px; /* Adjusted to match new smaller bar height */
             }
 
-            /* Reveal the floating bar */
             .mobile-action-bar {
                 display: flex;
                 position: fixed;
@@ -505,12 +503,16 @@
             .mobile-action-bar a {
                 flex: 1;
                 text-align: center;
-                padding: 1.2rem 1rem;
-                font-size: 1.1rem;
+                padding: 0.8rem 1rem; /* Scaled down padding */
+                font-size: 0.95rem; /* Scaled down font size */
                 font-weight: 700;
                 text-decoration: none;
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.4rem;
             }
 
             .mobile-btn-order {
@@ -758,7 +760,7 @@
                 <h4>Hours</h4>
                 <p>Monday - Saturday<br>7:00 AM - 4:00 PM</p>
                 <p style="margin-top: 1rem;">Sunday<br>8:00 AM - 1:00 PM</p>
-                <p style="margin-top: 2rem;">📞 (313) 499-8236</p>
+                <p style="margin-top: 2rem;">📞 <a href="tel:+13134998236" style="color: var(--white); text-decoration: none;">(313) 499-8236</a></p>
             </div>
             <div class="footer-col">
                 <h4>Connect</h4>
@@ -780,14 +782,12 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize Animations
         AOS.init({
-            duration: 800, // Animation speed
-            once: true, // Whether animation should happen only once - while scrolling down
-            offset: 50 // Offset (in px) from the original trigger point
+            duration: 800, 
+            once: true, 
+            offset: 50 
         });
 
-        // Modal Logic
         function closeModal() {
             const modal = document.getElementById('tigersModal');
             modal.classList.add('hidden');
