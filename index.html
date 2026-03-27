@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decent Detroit | Craft Coffee & Pastries</title>
+    <title>Decent Detroit | Craft Coffee & Pastries | Go Tigers!</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --brand-teal: #4A6B69; 
             --brand-dark: #2C3E3D;
             --brand-gold: #D4AF37; 
+            --brand-orange: #f26722; 
             --light-bg: #F4F7F6;
             --white: #FFFFFF;
             --text-main: #333333;
@@ -25,6 +26,84 @@
             color: var(--text-main);
             background-color: var(--light-bg);
             overflow-x: hidden;
+        }
+
+        /* Go Tigers Opening Day Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.4s ease, visibility 0.4s;
+            cursor: pointer; 
+        }
+
+        .modal-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            max-width: 450px;
+            width: 95%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border-top: 6px solid var(--brand-orange);
+            transform: translateY(0);
+            transition: transform 0.4s ease;
+            cursor: default; 
+        }
+
+        .modal-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .modal-overlay.hidden .modal-card {
+            transform: translateY(20px);
+        }
+
+        .modal-emoji {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .modal-card h2 {
+            color: var(--brand-dark);
+            margin-top: 0;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .modal-btn {
+            background-color: var(--brand-dark);
+            color: var(--white);
+            border: none;
+            padding: 0.9rem 2.5rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .modal-btn:hover {
+            background-color: var(--brand-teal);
+            transform: scale(1.03);
         }
 
         /* Modern Navigation */
@@ -100,7 +179,7 @@
             font-weight: 300;
         }
 
-        /* NEW: Swipeable Menu Carousel Section */
+        /* Swipeable Menu Carousel Section */
         .menu-section {
             padding: 5rem 5% 2rem;
             max-width: 1400px;
@@ -134,10 +213,9 @@
             gap: 1.5rem;
             padding: 1rem 0 2rem 0;
             scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            -webkit-overflow-scrolling: touch; 
         }
 
-        /* Custom subtle scrollbar */
         .menu-carousel::-webkit-scrollbar {
             height: 6px;
         }
@@ -156,7 +234,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            flex: 0 0 300px; /* Fixed width for swipe cards */
+            flex: 0 0 300px;
             box-shadow: var(--shadow);
             scroll-snap-align: start;
             transition: var(--transition);
@@ -171,6 +249,7 @@
             width: 100%;
             height: 220px;
             object-fit: cover;
+            background-color: #eee; 
         }
 
         .menu-content {
@@ -268,6 +347,7 @@
             aspect-ratio: 1 / 1;
             overflow: hidden;
             cursor: pointer;
+            background-color: #eee;
         }
 
         .insta-item img {
@@ -329,6 +409,52 @@
             line-height: 1.6;
         }
 
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--brand-teal);
+            transform: translateY(-3px);
+        }
+
+        .social-icons svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Map Embed Container */
+        .map-container {
+            margin-top: 1.5rem;
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
@@ -351,6 +477,15 @@
     </style>
 </head>
 <body>
+
+    <div id="tigersModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-emoji">⚾️ 🧢</div>
+            <h2>Welcome Back, Tigers!</h2>
+            <p>Comerica Park is ready, the Old English D is back, and Decent Detroit is ready to fuel your Opening Day energy. Grab a brew, grab a pastry, and get ready for baseball!</p>
+            <button class="modal-btn" onclick="closeModal()">Fuel Up</button>
+        </div>
+    </div>
 
     <nav>
         <h1>Decent Detroit</h1>
@@ -379,38 +514,59 @@
         
         <div class="menu-carousel">
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=400&q=80" alt="Latte" class="menu-img">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnjQoygmTifgO4JM5RTbda-IzyfKbSwWUnY8NVvgXsDg&s=10" alt="Pour Over" class="menu-img">
+                <div class="menu-content">
+                    <h4>Pour Over <span class="price">$4.00</span></h4>
+                    <p>Precision-brewed rotating local roasts for a clean, nuanced cup.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=400&q=80" alt="Espresso" class="menu-img">
+                <div class="menu-content">
+                    <h4>Espresso <span class="price">$2.50</span></h4>
+                    <p>A pure, perfectly pulled shot of our signature blend.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=400&q=80" alt="Latte" class="menu-img">
                 <div class="menu-content">
                     <h4>Latte <span class="price">$5.00</span></h4>
                     <p>Rich espresso pulled short, with perfectly micro-foamed milk. Available iced or hot.</p>
                 </div>
             </div>
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=400&q=80" alt="Pour Over" class="menu-img">
+                <img src="https://images.unsplash.com/photo-1579992357154-faf4bde95b3d?auto=format&fit=crop&w=400&q=80" alt="Flat White" class="menu-img">
                 <div class="menu-content">
-                    <h4>Pour Over <span class="price">$4.50</span></h4>
-                    <p>Precision-brewed rotating local roasts for a clean, nuanced cup.</p>
+                    <h4>Flat White <span class="price">$5.00</span></h4>
+                    <p>Double ristretto shot topped with thin, velvety steamed milk.</p>
                 </div>
             </div>
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1582787008544-b021d74d1511?auto=format&fit=crop&w=400&q=80" alt="Matcha Latte" class="menu-img">
+                <img src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?auto=format&fit=crop&w=400&q=80" alt="Matcha Latte" class="menu-img">
                 <div class="menu-content">
-                    <h4>Matcha Latte <span class="price">$5.00</span></h4>
+                    <h4>Matcha Latte <span class="price">$6.00</span></h4>
                     <p>Premium grade matcha lightly sweetened and whisked with your choice of milk.</p>
                 </div>
             </div>
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1594910134015-8a2b535d4d38?auto=format&fit=crop&w=400&q=80" alt="Affogato" class="menu-img">
+                <img src="https://images.unsplash.com/photo-1514733670139-4d87a1941d55?auto=format&fit=crop&w=400&q=80" alt="Chai" class="menu-img">
                 <div class="menu-content">
-                    <h4>Affogato <span class="price">$6.00</span></h4>
-                    <p>A shot of hot espresso poured over creamy, cold vanilla ice cream.</p>
+                    <h4>Chai <span class="price">$7.00</span></h4>
+                    <p>Spiced black tea blend with steamed milk. A cozy neighborhood staple.</p>
                 </div>
             </div>
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=400&q=80" alt="Espresso" class="menu-img">
+                <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=400&q=80" alt="Salted Coffee" class="menu-img">
                 <div class="menu-content">
-                    <h4>Espresso <span class="price">$3.50</span></h4>
-                    <p>A double shot of our signature blend.</p>
+                    <h4>Salted Coffee <span class="price">$6.00</span></h4>
+                    <p>Our unique house specialty balancing rich coffee with a touch of sea salt.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=400&q=80" alt="Rasp Berry Smoothie" class="menu-img">
+                <div class="menu-content">
+                    <h4>Rasp Berry Smoothie <span class="price">$7.00</span></h4>
+                    <p>A fresh, cold-blended 16oz smoothie bursting with bright berry flavor.</p>
                 </div>
             </div>
         </div>
@@ -427,38 +583,59 @@
         
         <div class="menu-carousel">
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=400&q=80" alt="Chocolate Croissant" class="menu-img">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerIcljraXwx-S65j7Gq-T3eVJUySMlxJe-iZk1aRJKYPocarZbK6z6scmeDiwHkqghodKdmQGiwt2A5KwRTcJ7KP7gfmBkYT45I6dxk_NUa0WPdXvoYhINes5PikogkU-RL_KLJ3aQ7CfkD=s1198-w676-h1198-rw" alt="Chocolate Croissant" class="menu-img">
                 <div class="menu-content">
                     <h4>Chocolate Croissant <span class="price">$5.00</span></h4>
                     <p>Flaky, buttery pastry dough wrapped around rich dark chocolate.</p>
                 </div>
             </div>
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" alt="Almond Croissant" class="menu-img">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerIcljraXwx-S65j7Gq-T3eVJUySMlxJe-iZk1aRJKYPocarZbK6z6scmeDiwHkqghodKdmQGiwt2A5KwRTcJ7KP7gfmBkYT45I6dxk_NUa0WPdXvoYhINes5PikogkU-RL_KLJ3aQ7CfkD=s1198-w676-h1198-rw" alt="Almond Croissant" class="menu-img">
                 <div class="menu-content">
-                    <h4>Almond Croissant <span class="price">$5.00</span></h4>
+                    <h4>Almond Croissant <span class="price">$5.50</span></h4>
                     <p>Classic croissant baked twice with a sweet almond frangipane filling.</p>
                 </div>
             </div>
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1509365465994-3e61ff265bf8?auto=format&fit=crop&w=400&q=80" alt="Cinnamon Roll" class="menu-img">
+                <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=400&q=80" alt="Pistachio Choco Croissant" class="menu-img">
                 <div class="menu-content">
-                    <h4>Cinnamon Roll <span class="price">$4.50</span></h4>
+                    <h4>Pistachio Choco Croissant <span class="price">$6.40</span></h4>
+                    <p>The ultimate indulgence. Flaky layers loaded with pistachio and rich chocolate.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" alt="Cinnamon Bun" class="menu-img">
+                <div class="menu-content">
+                    <h4>Cinnamon Bun <span class="price">$6.00</span></h4>
                     <p>Soft, warm, and perfectly spiced. A neighborhood favorite.</p>
                 </div>
             </div>
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1553909489-cd47ce522000?auto=format&fit=crop&w=400&q=80" alt="Turkey Sandwich" class="menu-img">
+                <img src="https://images.unsplash.com/photo-1619860860774-1e2e17342432?auto=format&fit=crop&w=400&q=80" alt="The Pret Sandwich" class="menu-img">
                 <div class="menu-content">
-                    <h4>Turkey Sandwich <span class="price">$8.00</span></h4>
-                    <p>Sliced turkey breast layered on fresh artisan bread.</p>
+                    <h4>The Pret <span class="price">$7.00</span></h4>
+                    <p>A classic, fresh sandwich built on artisan bread. Perfect for a quick lunch.</p>
                 </div>
             </div>
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=400&q=80" alt="Grilled Cheese" class="menu-img">
+                <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=400&q=80" alt="The Beast Sandwich" class="menu-img">
+                <div class="menu-content">
+                    <h4>The Beast <span class="price">$8.00</span></h4>
+                    <p>Our hearty signature sandwich, stacked high to get you through the afternoon.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1481070555726-e2fe8357725c?auto=format&fit=crop&w=400&q=80" alt="The Long Beach Sandwich" class="menu-img">
+                <div class="menu-content">
+                    <h4>The Long Beach <span class="price">$8.50</span></h4>
+                    <p>Fresh, flavorful, and filling. A premium lunch option crafted right here.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1528736235302-52922df5c122?auto=format&fit=crop&w=400&q=80" alt="Grilled Cheese" class="menu-img">
                 <div class="menu-content">
                     <h4>Grilled Cheese <span class="price">$5.00</span></h4>
-                    <p>Melted perfection on perfectly toasted bread. Great for kids and adults alike.</p>
+                    <p>Melted perfection on perfectly toasted bread. Loved by kids and adults alike.</p>
                 </div>
             </div>
         </div>
@@ -473,33 +650,33 @@
                     <p>Bringing your favorite people to your favorite spot.</p>
                 </div>
             </div>
-            <a href="https://instagram.com/decentdetroit" target="_blank" class="follow-btn">Follow</a>
+            <a href="https://www.instagram.com/decentdetroit?igsh=MTB3b3AzNGM2MjBmaw==" target="_blank" class="follow-btn">Follow</a>
         </div>
         
         <div class="insta-grid">
             <div class="insta-item">
-                <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=500&q=80" alt="IG Post 1">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnjQoygmTifgO4JM5RTbda-IzyfKbSwWUnY8NVvgXsDg&s=10" alt="IG Post 1">
                 <div class="insta-overlay">
                     <span>❤️ 143</span>
                     <span>💬 12</span>
                 </div>
             </div>
             <div class="insta-item">
-                <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&w=500&q=80" alt="IG Post 2">
+                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=500&q=80" alt="IG Post 2">
                 <div class="insta-overlay">
                     <span>❤️ 89</span>
                     <span>💬 4</span>
                 </div>
             </div>
             <div class="insta-item">
-                <img src="https://images.unsplash.com/photo-1495474472205-51f7570fac42?auto=format&fit=crop&w=500&q=80" alt="IG Post 3">
+                <img src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?auto=format&fit=crop&w=500&q=80" alt="IG Post 3">
                 <div class="insta-overlay">
                     <span>❤️ 210</span>
                     <span>💬 28</span>
                 </div>
             </div>
             <div class="insta-item">
-                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=500&q=80" alt="IG Post 4">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80" alt="IG Post 4">
                 <div class="insta-overlay">
                     <span>❤️ 175</span>
                     <span>💬 9</span>
@@ -513,23 +690,52 @@
             <div class="footer-col">
                 <h4>Find Us</h4>
                 <p>14834 Kercheval Ave<br>Detroit, Michigan 48215</p>
-                <p style="margin-top: 1rem;">Plenty of outlets and free WiFi available.</p>
+                <div class="map-container">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=14834+Kercheval+Ave,+Detroit,+MI+48215&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
             <div class="footer-col">
                 <h4>Hours</h4>
                 <p>Monday - Saturday<br>7:00 AM - 4:00 PM</p>
                 <p style="margin-top: 1rem;">Sunday<br>8:00 AM - 1:00 PM</p>
+                <p style="margin-top: 2rem;">📞 (313) 499-8236</p>
             </div>
             <div class="footer-col">
-                <h4>Get in Touch</h4>
+                <h4>Connect</h4>
                 <p>Follow us for weekend pop-ups and bake sales!</p>
-                <p style="margin-top: 1rem;">IG: @decentdetroit<br>FB: Decent Coffee</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/decentdetroit?igsh=MTB3b3AzNGM2MjBmaw==" target="_blank" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/share/1CGoTczo76/" target="_blank" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.325V1.325C24 .597 23.403 0 22.675 0z"/></svg>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 Decent Detroit. Website crafted locally by Iron Digital.
+            © 2026 Decent Detroit. Website crafted locally by Iron Digital.
         </div>
     </footer>
+
+    <script>
+        function closeModal() {
+            const modal = document.getElementById('tigersModal');
+            modal.classList.add('hidden');
+        }
+
+        // Allow closing the modal by clicking anywhere on the dark overlay background
+        document.getElementById('tigersModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeModal();
+            }
+        });
+    </script>
 
 </body>
 </html>
